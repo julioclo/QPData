@@ -8,6 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r}
+
 rm(list = ls(all = TRUE))
 
 setwd("~/Desktop/DATA QP")
@@ -20,6 +23,8 @@ library(lmerTest)
 df_ajt_sp <- read_excel("./AJT_SP.xlsx")
 
 glimpse(df_ajt_sp)
+
+mintsp <- df_ajt_sp$mintsp
 
 # Overal averages
 df_ajt_sp %>% 
@@ -162,3 +167,4 @@ mod_full_ungram_Pron_Inan <- lmer(response ~ groupRC + mintSc +
                               control = lmerControl(optimizer = "bobyqa", optCtrl = list(maxfun=2e5)))
 
 summary(mod_full_ungram_Pron_Inan)
+```
