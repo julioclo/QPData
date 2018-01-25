@@ -8,9 +8,13 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r}
+
 rm(list = ls(all = TRUE))
 
-setwd("~/Desktop/DATA QP")
+# The working directory did not point to the file (DATA QP vs. QPData)
+setwd("~/Desktop/QPData/DATA QP")
 
 library(tidyverse)
 library(readxl)
@@ -51,3 +55,7 @@ ajt_p2 <- df_ajt_ro %>%
   labs(x = 'Animacy', y = '% Response', caption = 'Mean +/- 95% CI', 
        title = 'Acceptability of DOM as a function of do, animacy,\nand grammaticality.') + 
   theme_grey(base_size = 16, base_family = 'Times')
+
+
+ajt_p2
+```
