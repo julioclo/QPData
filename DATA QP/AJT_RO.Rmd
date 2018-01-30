@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, 'load', message=FALSE, warning=FALSE}
 
 rm(list = ls(all = TRUE))
 
@@ -22,7 +22,10 @@ library(lme4)
 library(lmerTest)
 
 df_ajt_ro <- read_excel("./AJT_RO.xlsx")
+```
 
+
+```{r, 'descriptives'}
 glimpse(df_ajt_ro)
 
 # Overal averages
@@ -59,3 +62,19 @@ ajt_p2 <- df_ajt_ro %>%
 
 ajt_p2
 ```
+
+
+
+
+```{r, 'ttest'}
+# Bi Ro - do they accept inanimate pronound w/o DOM (inan, ungram, pro vs dp)
+
+# create subset of inan, ungram
+bi_ro_inan_u <- df_ajt_ro %>% 
+  filter(., animacy == "Inan", gram == "u", do != "AGC") 
+
+# t-test: # independent 2-group, 2 level IV
+bi_ro_inan_u_ttest <- t.test(response ~ do, data = bi_ro_inan_u, paired = TRUE)
+bi_ro_inan_u_ttest
+```
+
